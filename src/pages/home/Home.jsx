@@ -3,6 +3,7 @@ import dress from '@assets/dress.png'
 import { Header } from '@components/common/Header/Header';
 import { ProductCard } from '@components/products/productCard/ProductCard';
 import { GetAllProducts } from '@services/ProductsServices';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
 

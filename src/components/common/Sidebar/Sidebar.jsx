@@ -41,7 +41,7 @@ const Sidebar = () => {
                         }}
                     >
                         <HiOutlineStar />
-                        <span>Favorites</span>
+                        <span>Home</span>
                     </NavLink>
                 </li>
             </ul>
