@@ -10,7 +10,7 @@ Crear una api con las siguiente rutas
 
 Todas las rutas deben tener el siguiente formato en el (Response)
     
-    ```json
+    ```typescript
     {
         "success": true,
         "message": "Los productos se han cargado correctamente",
