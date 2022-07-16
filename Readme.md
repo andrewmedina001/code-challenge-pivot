@@ -3,8 +3,10 @@
 ## Descripción
 
 Crear una api con las siguiente rutas
-- Para poder traer la lista de productos, GET: productos/
+- Para poder traer la lista de productos, GET: productos/<int:tipo_producto>
 - Para poder crear un producto, POST: productos/
+- Para poder crear y traer los tipos de producto, POST y GET: tipo-producto/
+- Para poder ver los detalles de un producto, GET: producto/<int:id_producto>
 
 ## Detalles
 
@@ -21,7 +23,7 @@ Todas las rutas deben tener el siguiente formato en el (Response)
                 "productPrice": 100.00,
                 "productDescription": "Descripción del producto 1",
                 "productImage": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-                "productCategory": "Categoria 1"
+                "productCategory": 0
             }
         ]
     }
