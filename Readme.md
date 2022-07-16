@@ -27,7 +27,7 @@ Todas las rutas deben tener el siguiente formato en el (Response)
     }
 }
 ```
-## Aplication views
+## Imagenes de la aplicación
 ![Hero](https://github.com/12aptor/Codigo-Challenge/blob/main/public/first-page-ss.png)
 ![Products](https://github.com/12aptor/Codigo-Challenge/blob/main/public/second-page-ss.png)
 ![Admin](https://github.com/12aptor/Codigo-Challenge/blob/main/public/third-page-ss.png)
