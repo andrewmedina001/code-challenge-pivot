@@ -55,9 +55,9 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className='Products'>
+            <div className='Show-products'>
                 <div className="u_wrapper">
-                    <div className="Products-container">
+                    <div className="Show-products-container">
                         {
                             [1, 2, 3, 4, 5].map((product, index) => <ProductCard key={index} />)
                         }

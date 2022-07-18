@@ -23,9 +23,13 @@ body {
   margin: 0;
 }
 
-.u_wrapper{
+.u_wrapper {
   max-width: 1200px;
   width: 100%;
+}
+
+.b-shadow {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
