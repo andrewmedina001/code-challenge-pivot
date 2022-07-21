@@ -2,6 +2,7 @@ import {
     BrowserRouter,
     Routes,
     Route,
+    Navigate
 } from "react-router-dom";
 // Search absolute import documentation for more info and check vite.config.js file for details of configuring vite
 import { Home } from '@pages/home/Home';
@@ -23,7 +24,7 @@ function App() {
         <AdminContextProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route index path="/" element={<Home />}>
+                    <Route index path="/pe" element={<Home />}>
                         {/* <Route index element={<Home />} />
                         <Route path="teams" element={<Teams />}>
                             <Route path=":teamId" element={<Team />} />
@@ -31,11 +32,12 @@ function App() {
                             <Route index element={<LeagueStandings />} />
                         </Route> */}
                     </Route>
+                    {/* <Route path="/pe/dashboard" element={< />}> */}
                     <Route path="admin-panel" element={<AdminLayout />}>
                         <Route index path="products" element={<Products  />} />
                         <Route path="categories" element={<Categories />} />
                     </Route>
-                    <Route path="*" element={<Home />} />
+                    <Route path="*" element={<Navigate to={"/pe"} />} />
                 </Routes>
             </BrowserRouter>
         </AdminContextProvider>

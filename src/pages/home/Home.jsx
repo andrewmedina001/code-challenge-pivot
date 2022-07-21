@@ -1,11 +1,11 @@
 import './Home.scss'
 import dress from '@assets/dress.png'
-import { Header } from '@components/common/Header/Header';
+import { PublicHeader } from '@components/common/PublicHeader/PublicHeader';
 import { ProductCard } from '@components/products/productCard/ProductCard';
 import { GetAllProducts } from '@services/ProductsServices';
 import { useEffect, useState } from 'react';
 
-const Home = () => {
+export const Home = () => {
 
     const [listOfProducts, setListOfProducts] = useState([]);
 
@@ -23,9 +23,24 @@ const Home = () => {
         fetchData();
     }, [listOfProducts]);
 
+    useEffect(() => {
+        fetch('https://tareas-codigo.herokuapp.com/autorizacion/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                correo: "adminadmin@gmail.com",
+                password: "adminadmin"
+            })
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+    }, [])
+
     return (
         <>
-            <Header />
+            <PublicHeader />
 
             <div className='NewHero'>
                 <div className="u_wrapper">
@@ -67,5 +82,3 @@ const Home = () => {
         </>
     )
 }
-
-export { Home };
