@@ -23,21 +23,6 @@ export const Home = () => {
         fetchData();
     }, [listOfProducts]);
 
-    useEffect(() => {
-        fetch('https://tareas-codigo.herokuapp.com/autorizacion/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                correo: "adminadmin@gmail.com",
-                password: "adminadmin"
-            })
-        })
-            .then(res => res.json())
-            .then(data => console.log(data))
-    }, [])
-
     return (
         <>
             <PublicHeader />
