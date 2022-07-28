@@ -23,6 +23,25 @@ export const Home = () => {
         fetchData();
     }, [listOfProducts]);
 
+    // 
+
+    useEffect(()=>{
+        fetch('https://tareas-codigo-and.herokuapp.com/autorizacion/login',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                correo:"gmail03@gmail.com",
+                password:"password03"
+            })
+        })
+            .then(res=>res.json())
+            .then(data=>console.log(data))
+    },[])
+
+    // 
+
     return (
         <>
             <PublicHeader />
