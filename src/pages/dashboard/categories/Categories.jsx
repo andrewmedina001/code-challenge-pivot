@@ -1,45 +1,45 @@
 import { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../../contexts/AdminContext";
+import { getCategories } from "../../../services/CategoriesServices";
+import { postCategory } from "../../../services/CategoriesServices";
 
 export const Categories = () => {
 
     const { setAdminTitle } = useContext(AdminContext);
-    const [listOfCategories, setListOfCategories] = useState([
-        {
-            categoryId: 1,
-            categoryName: 'Pantalones',
-            categoryDescription: 'Product Brand',
-        },
-        {
-            categoryId: 2,
-            categoryName: 'Zapatillas',
-            categoryDescription: 'Product Brand',
-        },
-        {
-            categoryId: 3,
-            categoryName: 'Sudaderas',
-            categoryDescription: 'Product Brand',
-        },
-        {
-            categoryId: 4,
-            categoryName: 'Camisas',
-            categoryDescription: 'Product Brand',
-        }
-    ]);
+    const [listOfCategories, setListOfCategories] = useState([]);
     const [category, setCategory] = useState({
-        categoryName: '',
-        categoryDescription: '',
+        categoriaNombre:"",
+        categoriaDescription:""
     });
+    const[bandera,setBandera]=useState([false])
+    console.log(category);
 
     useEffect(() => {
         setAdminTitle('Categories');
     }, []);
+    
+    useEffect(() => {
+        const fetchData=async()=>{
+            const response=await getCategories();
+            setListOfCategories(response.content);
+        }
+        fetchData();
+    }, [bandera]);
 
-    const createProduct = async (event) => {
+    const createCategory = async (event) => {
         event.preventDefault();
         try {
-            // const response = await PostProduct(product);
-            // console.log(response)
+            const response=await postCategory(category)
+            if(response.success){
+                setBandera(!bandera)
+                setCategory({
+                    categoriaNombre:"",
+                    categoriaDescription:""
+                })
+                console.log('La categoria se ha creado correctamente.')
+            }else{
+                alert('La categoria NO se puedo crear.')
+            }
         } catch (error) {
             console.log(error)
         }
@@ -47,7 +47,7 @@ export const Categories = () => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        return setProduct({ ...product, [name]: value });
+        return setCategory({ ...category, [name]: value });
     };
 
     return (
@@ -57,16 +57,16 @@ export const Categories = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>Product name</th>
-                            <th>Product description</th>
+                            <th>Category Name</th>
+                            <th>Category Description</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            listOfCategories.map(category => (
-                                <tr key={category.categoryId}>
-                                    <td>{category.categoryName}</td>
-                                    <td>{category.categoryDescription}</td>
+                            listOfCategories.length>0 && listOfCategories.map(category => (
+                                <tr key={category.categoriaId}>
+                                    <td>{category.categoriaNombre}</td>
+                                    <td>{category.categoriaDescription}</td>
                                 </tr>
                             ))
                         }
@@ -75,24 +75,24 @@ export const Categories = () => {
             </div>
 
             <h4 className='Products-subtitle'>Create product</h4>
-            <form className='Products-create-form' onSubmit={createProduct}>
+            <form className='Products-create-form' onSubmit={createCategory}>
                 <div className="form-group">
-                    <label htmlFor="productName">Product name</label>
+                    <label htmlFor="productName">Category name</label>
                     <input
                         type="text"
-                        name='productName'
-                        id='productName'
-                        value={category.categoryName}
+                        name='categoriaNombre'
+                        id='categoriaNombre'
+                        value={category.categoriaNombre}
                         onChange={handleInputChange}
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="productDescription">Product description</label>
+                    <label htmlFor="productDescription">Category Description</label>
                     <input
                         type="text"
-                        name='productDescription'
-                        id='productDescription'
-                        value={category.categoryDescription}
+                        name='categoriaDescription'
+                        id='categoriaDescription'
+                        value={category.categoriaDescription}
                         onChange={handleInputChange}
                     />
                 </div>

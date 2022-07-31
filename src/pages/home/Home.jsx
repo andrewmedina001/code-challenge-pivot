@@ -1,8 +1,9 @@
 import './Home.scss'
 import dress from '@assets/dress.png'
 import { PublicHeader } from '@components/common/PublicHeader/PublicHeader';
-import { ProductCard } from '@components/products/productCard/ProductCard';
-import { GetAllProducts } from '@services/ProductsServices';
+// import { ProductCard } from '@components/products/productCard/ProductCard';
+import { ProductCard } from '../../components/products/productCard/ProductCard';
+import { GetAllProducts } from '../../services/ProductsServices';
 import { useEffect, useState } from 'react';
 
 export const Home = () => {
@@ -21,7 +22,8 @@ export const Home = () => {
             }
         }
         fetchData();
-    }, [listOfProducts]);
+    }, []);
+    // [listOfProducts]
 
     // 
 
@@ -78,7 +80,9 @@ export const Home = () => {
                 <div className="u_wrapper">
                     <div className="Show-products-container">
                         {
-                            [1, 2, 3, 4, 5].map((product, index) => <ProductCard key={index} />)
+                            listOfProducts.length>0 && listOfProducts.map((product, index) => (
+                                <ProductCard key={index} product={product}/>
+                            ))
                         }
                     </div>
                 </div>
